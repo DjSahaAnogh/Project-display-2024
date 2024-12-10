@@ -63,6 +63,6 @@ def area_rectangle() -> None:
   print(x * y)
 
 
- area_rectangle()
+area_rectangle()
 
 
