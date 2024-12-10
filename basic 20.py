@@ -77,3 +77,18 @@ class Profit:
 
 p1: Profit = Profit(1000, 0.1, 2)
 print(p1.interest(1000, 0.1, 2))
+
+# or
+
+def intrest_cal(calpital: int, rate: float, time: int) -> int:
+  return calpital*rate*time
+
+
+print(intrest_cal(1000, 0.1, 2))
+
+# Convert Temperature
+
+def tem_cal_c_2_f(celcius: float) -> float:
+  fharenhite: float= (celcius/5)*9+32
+  return fharenhite
+print(tem_cal_c_2_f(37))
