@@ -63,4 +63,18 @@ def area_rectangle() -> None:
   print(x * y)
 
 
-area_rectangle()
+# area_rectangle()
+
+# Simple Interest
+class Profit:
+  def __init__(self, capital: int, rate: float, time: int) -> None:
+    self.capital = capital
+    self.rate = rate
+    self.time = time
+  
+  def interest(self, capital: int, rate: float, time: int) -> int:
+    return capital*rate*time
+
+p1: Profit = Profit(1000, 0.1, 2)
+print(p1.interest(1000, 0.1, 2))
+
