@@ -1,0 +1,66 @@
+# Print Your Name
+name: str = "Dhanonjoy"
+print(f"Hello! {name}")
+
+# Basic Arithmetic
+
+def calculator() -> None:
+  while True:
+    try:
+      num1: float = float(input("Enter the first number: "))
+      num2: float = float(input("Enter the second number: "))
+      op: str = input("Provide a operator(+, -, *, /, %, ^):")
+    except ValueError:
+      print("An error ocured. You entered an invalid value.")
+      calculator()
+    
+    def check_op() -> bool:
+      if op in ["+", "-", "*", "/", "%", "^"]:
+        return True
+      else:
+        return False
+    
+    if check_op():
+      if op == "+":
+        print(num1 + num2)
+        break
+      if op == "-":
+        print(num1 - num2)
+        break
+      if op == "*":
+        print(num1 * num2)
+        break
+      if op == "/":
+        if num2 != 0:
+          print(num1/num2)
+          break
+        else:
+          print("Divison by Zero Error!")
+          break
+      if op == "%":
+        print(num1 % num2)
+        break
+      if op == "^":
+        print(num1 ** num2)
+        break
+    else:
+      print("Invalid operator! Try again.")
+      calculator()
+      break
+  if input("Do you want to do another calculation?\nIf yes enter 'y' or enter any to exit: ").lower() == "y":
+    calculator()
+
+# calculator()
+
+# Area of a Rectangle
+def area_rectangle() -> None:
+  try:
+    x: int = int(input("Enter the lenght(cm): "))
+    y: int = int(input("Enter the breath(cm):"))
+  except ValueError:
+    print("Invalid input. Please try again.")
+    area_rectangle()
+  print(x * y)
+
+
+area_rectangle()
