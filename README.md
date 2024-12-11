@@ -98,4 +98,4 @@ Here’s a list of **20 basic Python problems**, progressively arranged from ver
 
 ---
 
-This set of problems progresses in difficulty and is perfect for building foundational Python skills! Let me know if you’d like to dive into any specific one, or need help solving them. 😊
+This set of problems progresses in difficulty and is perfect for building foundational Python skills!
