@@ -108,7 +108,7 @@ def check_positive_or_negative(num: int) -> None:
 # check_positive_or_negative(-5)
 
 # 7. Calculate Factorial
-def factor(num) -> int:
+def factor(num: int) -> int:
   return factorial(num)
 
 # print(factor(5))
@@ -147,3 +147,55 @@ def fizzbuzz(num: int) -> None:
     print("Not divisible by 3 or 5")
 
 # fizzbuzz(8)
+
+# 11. Find Minimum and Maximum
+
+x: list = [2, 6, 8, 12, 46, 52, 89, 852, 455, 22, 6, 52, 48, 66, 156, 45, 852, 75, 795, 52]
+
+def min_max(lis: list) -> int:
+  lis.sort()
+  min_num: int = lis[0]
+  max_num: int = lis[-1]
+  return min_num, max_num
+
+print(min_max(x))
+
+# 12.Check Leap Year
+
+def check_leap_year(year: int) -> bool:
+  if year % 4 == 0:
+    return True
+  else:
+    return False
+
+# print(check_leap_year())
+
+# 13. Count Words in a String
+
+def word_count(data: str) -> int:
+  info_lis: list = data.split(" ")
+  ans = len(info_lis)
+  return ans
+
+print(word_count("Hey! I'm hope that u liked it so far!"))
+
+# 14. Sum of Digits
+def sum_digits(data: int) -> int:
+    total_num: int = 0
+    while data > 0:
+        digit: int = data % 10  
+        total_num += digit  
+        data = data // 10
+    return total_num
+
+print(sum_digits(123))
+
+
+# 15. Multiplication Table
+
+def multiplication(num: int, mul_range: int):
+  for i in range(0, mul_range+1):
+    data: int = num * i
+    print(data)
+
+multiplication(5, 10)
