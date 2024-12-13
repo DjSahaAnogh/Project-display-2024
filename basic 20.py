@@ -188,7 +188,7 @@ def sum_digits(data: int) -> int:
         data = data // 10
     return total_num
 
-print(sum_digits(123))
+# print(sum_digits(123))
 
 
 # 15. Multiplication Table
@@ -198,4 +198,66 @@ def multiplication(num: int, mul_range: int):
     data: int = num * i
     print(data)
 
-multiplication(5, 10)
+# multiplication(5, 10)
+
+# 16. Find All Divisors
+
+def divisiors(num: int) -> int:
+  divisiors: list = []
+  for i in range(1, num+1):
+    if num % i == 0:
+      divisiors.insert(-1, i)
+      divisiors.sort()
+    else:
+      continue
+  return divisiors
+
+# print(divisiors(12))
+
+# 17. Check Palindrome (Number)
+def palindrome(num: int) -> None:
+  new_num: str = str(num)
+  reverse: str = new_num[::-1]
+  if new_num == reverse:
+    print("It is a palindrome number.")
+  else:
+    print("It is not a palindrome number.")
+
+# palindrome(121)
+
+# 18. Armstrong Number
+
+def is_armstrong_num(num: int) -> bool:
+  data: str = str(num)
+  lis: list = list(data)
+  count: int = len(lis)
+  total: int = 0
+  for i in lis:
+    x: int = int(i)
+    total += x ** count
+  if total == num:
+    return True
+  else:
+    return False
+
+# print(is_armstrong_num(158))
+
+# 19. Count Occurrences of an Element
+
+def count_occurrences(lis: list, element: any) -> None:
+  lis.sort()
+  count_instence: int = lis.count(element)
+  print(count_instence)
+
+# count_occurrences(x, 6)
+
+# 20. Generate a List of Squares
+
+def square_list(start_num: int, end_num: int) -> list:
+  generated_list: list = []
+  for i in range(start_num, end_num+1):
+    generated_list.insert(-1, i**2)
+    generated_list.sort()
+  return generated_list
+
+# print(square_list(6, 10))
