@@ -2,6 +2,7 @@
 
 # ALL IMPORTS
 from datetime import datetime
+import random
 
 # 1. Create a program that asks the user to enter their name and their age. Print out a message addressed to them that tells them the year that they will turn 100 years old. Note: for this exercise, 
 # the expectation is that you explicitly write out the year (and therefore be out of date the next year). 
@@ -113,4 +114,56 @@ def even_num(lis: list) -> None:
 
 even_num(a)
 
-# 8. 
+# 8. Make a two-player Rock-Paper-Scissors game. 
+def rock_paper_scissors() -> None:
+  while True:
+    option: list = ["rock", "paper", "scissors"]
+    user_responce: str = input("Choose a symbol(rock, paper, scissors): ").lower()
+    computer_responce: str = random.choice(option)
+
+    # checking
+    if user_responce in option:
+      pass
+    else:
+      print('Invaild input, please try again!')
+      rock_paper_scissors()
+    
+    # game
+    if user_responce == computer_responce:
+      print("It is a tie")
+      break
+    elif (user_responce == "rock" and computer_responce == "scissors") or (user_responce == "scissors" and computer_responce == "paper") or (user_responce == "paper" and computer_responce == "rock"):
+      print("You won!")
+      break
+    else:
+      print("Computer won!")
+      break
+  if input("Do you want to play again? If yes enter 'y' \nor enter any key: "). lower() == "y":
+    rock_paper_scissors()
+
+# rock_paper_scissors()
+
+# 9. Generate a random number between 1 and 9 (including 1 and 9). Ask the user to guess the number, then tell them whether they guessed too low, too high, or exactly right.
+
+def guess_game() -> None:
+  while True:
+    try:
+      user_responce: int = int(input("Guess the number: "))
+    except ValueError:
+      print("Invaild input, please try again!")
+      guess_game()
+    num: int = random.randint(1, 9)
+
+    if user_responce > num:
+      print("too high")
+    elif user_responce < num:
+      print("too low")
+    else:
+      print("Congratulations! You won!")
+      break
+  
+  if input("Do you want to play again? If yes enter 'y' \nor enter any key: "). lower() == "y":
+    guess_game()
+
+
+guess_game()
