@@ -112,7 +112,7 @@ def even_num(lis: list) -> None:
   new_lis: list = [i for i in lis if i % 2 == 0]
   print(new_lis)
 
-even_num(a)
+# even_num(a)
 
 # 8. Make a two-player Rock-Paper-Scissors game. 
 def rock_paper_scissors() -> None:
@@ -146,13 +146,14 @@ def rock_paper_scissors() -> None:
 # 9. Generate a random number between 1 and 9 (including 1 and 9). Ask the user to guess the number, then tell them whether they guessed too low, too high, or exactly right.
 
 def guess_game() -> None:
+  num: int = random.randint(1, 9)
   while True:
     try:
       user_responce: int = int(input("Guess the number: "))
     except ValueError:
       print("Invaild input, please try again!")
       guess_game()
-    num: int = random.randint(1, 9)
+    
 
     if user_responce > num:
       print("too high")
@@ -166,4 +167,41 @@ def guess_game() -> None:
     guess_game()
 
 
-guess_game()
+# guess_game()
+
+# 10. Take two lists, say for example these two:
+a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+# and write a program that returns a list that contains only the elements that are common between the lists (without duplicates).
+
+def overlap2(lis1: list, lis2: list) -> list:
+  lis1.sort()
+  set1: set = set(lis1)
+  lis2.sort()
+  set2: set = set(lis2)
+  new_lis1: list = list(set1)
+  new_lis2: list = list(set2)
+  overlap: list = [x for x in new_lis1 for y in new_lis2 if x == y]
+  return overlap
+
+# print(overlap2(a, b))
+
+# 11. Ask the user for a number and determine whether the number is prime or not.
+
+def is_prime(num:list) -> bool:
+  divisior_lis: list = [x for x in range(1, num+1) if num % x == 0]
+  if len(divisior_lis) == 2:
+    return True
+  else:
+    return False
+
+# print(is_prime(4))
+
+# 12. Write a program that takes a list of numbers (for example, a = [5, 10, 15, 20, 25]) and makes a new list of only the first and last elements of the given list.
+
+p = [5, 10, 15, 20, 25]
+def list_end(lis: list) -> None:
+  new_lis = [lis[i] for i in (0, -1)]
+  print(new_lis)
+
+# list_end(p)
