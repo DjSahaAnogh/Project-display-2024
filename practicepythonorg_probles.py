@@ -3,6 +3,7 @@
 # ALL IMPORTS
 from datetime import datetime
 import random
+import string
 
 # 1. Create a program that asks the user to enter their name and their age. Print out a message addressed to them that tells them the year that they will turn 100 years old. Note: for this exercise, 
 # the expectation is that you explicitly write out the year (and therefore be out of date the next year). 
@@ -205,3 +206,67 @@ def list_end(lis: list) -> None:
   print(new_lis)
 
 # list_end(p)
+
+# 13. Write a program that asks the user how many Fibonnaci numbers to generate and then generates them.
+
+def fibonnaci_v01(num: int) -> None:
+  num1: int = 0
+  num2: int = 1
+  i: int = 0
+  while num != i:
+    num1, num2 = num2, num1+num2
+    print(num1)
+    i += 1
+
+# fibonnaci_v01(5)
+
+# or
+
+def fibonnaci_v02() -> None:
+  while True:
+    try:
+      num_of_term: int = int(input("Please enter the number of terms of Fibonnaci sequence: "))
+    except ValueError:
+      print("Invalid input, please try again.")
+    
+    num1: int = 0
+    num2: int = 1
+
+    while num_of_term:
+      num1, num2 = num2, num1+num2
+      print(num1)
+      num_of_term -= 1
+    
+    if num_of_term == 0:
+      break
+    else:
+      continue
+
+# fibonnaci_v02()
+
+# 14. Write a program (using functions!) that asks the user for a long string containing multiple words. Print back to the user the same string, except with the words in backwards order.
+
+def backward_order() -> None:
+  text: str = input("Plear provide a text: ")
+  lis: list = text.split(" ")
+  new_lis: list = lis[::-1]
+  new_str: str = " ".join(new_lis)
+  print(new_str)
+
+
+# backward_order()
+
+# 15. Password Generator
+
+def password_generator() -> str:
+  lis_symbol: list = ["#", "@", "!", "%", "&", "$", "/", "\\"]
+  uppercase_letter: str = random.choice(string.ascii_uppercase)
+  lowercase_letter: str = random.choice(string.ascii_lowercase)
+  num: str = str(random.randint(1, 21))
+  symbol: str = random.choice(lis_symbol)
+  password_lis: list = [uppercase_letter, lowercase_letter, num, symbol]
+  random.shuffle(password_lis)
+  password: str = "".join(password_lis)
+  return password
+
+print(password_generator())
