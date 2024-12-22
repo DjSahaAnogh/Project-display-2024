@@ -326,5 +326,5 @@ def game_play() -> None:
   else:
     print(f"Sorry! You've used all attempts. The secret number was {secret}.")
 
-if __name__ == "__main__":
-  game_play()
+# if __name__ == "__main__":
+#   game_play()
