@@ -4,6 +4,9 @@
 from datetime import datetime
 import random
 import string
+import requests
+from bs4 import BeautifulSoup
+
 
 # 1. Create a program that asks the user to enter their name and their age. Print out a message addressed to them that tells them the year that they will turn 100 years old. Note: for this exercise, 
 # the expectation is that you explicitly write out the year (and therefore be out of date the next year). 
@@ -262,11 +265,66 @@ def password_generator() -> str:
   lis_symbol: list = ["#", "@", "!", "%", "&", "$", "/", "\\"]
   uppercase_letter: str = random.choice(string.ascii_uppercase)
   lowercase_letter: str = random.choice(string.ascii_lowercase)
-  num: str = str(random.randint(1, 21))
+  num: str = str(random.randint(1, 10))
   symbol: str = random.choice(lis_symbol)
   password_lis: list = [uppercase_letter, lowercase_letter, num, symbol]
   random.shuffle(password_lis)
   password: str = "".join(password_lis)
   return password
 
-print(password_generator())
+# print(password_generator())
+
+# 16. Decode a web page
+
+# url: str = "https://aniwatchtv.to/blue-exorcist-1198?ref=search"
+# responce = requests.get(url)
+
+# html = responce.text
+
+# soup = BeautifulSoup(html, "html.parser")
+# print(soup.title.string)
+
+# headings = soup.find_all("h2")
+# for i, heading in enumerate(headings):
+#   print(f"{i+1}: {heading.text.strip()}")
+
+# 17. Cows And Bulls
+
+def get_secret_num() -> str:
+  secret_num: list = random.sample(range(10), 4)
+  return str(secret_num)
+
+def get_user_guess() -> str:
+  while True:
+    guess = input("Enter your guess (4 unique digits): ")
+    if len(guess) == 4 and guess.isdigit() and len(set(guess)) == 4:
+      return guess
+    print("Invalid input. Please enter 4 unique digits.")
+
+def calculate_cows_and_bulls(secret, guess) -> set:
+    cows = sum(1 for s, g in zip(secret, guess) if s == g)
+    cow_hint = [x for i, x in enumerate(secret) if i < len(guess) and x == guess[i]]
+    bulls = sum(1 for g in guess if g in secret)
+    bull_hint = [x for x in guess if x in secret]
+    return cows, bulls, cow_hint, bull_hint
+
+def game_play() -> None:
+  attempts: int = 0
+  max_attempts: int = 10
+  secret: str = get_secret_num()
+  
+  print("Welcome to the cows and bulls game.\n Please guess the 4 digits. You have 10 attempts.")
+  
+  while attempts < max_attempts:
+    attempts += 1
+    cows, bulls, cow_hints, bull_hints = calculate_cows_and_bulls(secret, get_user_guess())
+    print(f"Cows: {cows}, Bulls: {bulls}, No. of attempts {attempts}. Hint for cow {cow_hints}, for bull {bull_hints}")
+
+    if cows == 4:
+      print(f"Congratulation you won the game in {attempts} attempts")
+      break
+  else:
+    print(f"Sorry! You've used all attempts. The secret number was {secret}.")
+
+if __name__ == "__main__":
+  game_play()
