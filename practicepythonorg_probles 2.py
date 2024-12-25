@@ -53,3 +53,31 @@ def binary_search(arr: list, target: int) -> bool:
 # 20. Write To A File
 with open("emaple.txt", "w") as text:
     text.write("hello")
+
+# 21. Read from a file
+with open("nameslist.txt", "r") as read_file:
+   names: list = []
+   for line in read_file:
+      names.append(line.strip())
+new_name_set = set(names)
+# print(new_name_set)
+
+# 22. File overlap
+
+with open("primenumbers.txt", "r") as prime_nums:
+   prime_list: list = []
+   for line in prime_nums:
+        prime_list.append(line.strip())
+
+with open("happynumbers.txt", "r") as happy_nums:
+    happy_list: list = []
+    for line in happy_nums:
+          happy_list.append(line.strip())
+
+overlap_list: list = []
+for i in prime_list:
+    if i in happy_list:
+        overlap_list.append(i)
+# print(overlap_list)
+
+# 23. 
