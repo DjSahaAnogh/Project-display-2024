@@ -80,4 +80,40 @@ for i in prime_list:
         overlap_list.append(i)
 # print(overlap_list)
 
-# 23. 
+# 23. Draw A Game Board
+def draw_board() -> None:
+    size: int = int(input("Enter the size of the board: "))
+    for i in range(size):
+        print(" ---" * size)
+        print("|   " * (size + 1))
+    print(" ---" * size)
+
+# draw_board()
+
+# 24. Guessing Game Two
+def computer_guess() -> None:
+    high_point: int = int(input("Please enter a range of numbers you want the computer to guesses from: "))
+    number_line: list = [i for i in range(1, high_point + 1)]
+    low: int = number_line.index(1)
+    high: int = number_line.index(high_point)
+    
+    guesses: int = 1
+    while True:
+        num = number_line[len(number_line) // 2]
+        print(f"Is your number {num}?")
+        ans = input("Enter 'c' if it's correct, 'h' if your number is higher, and 'l' if your number is lower: ").lower()
+        if ans == "c":
+            print(f"I got it right in {guesses} guesses.")
+            break
+        elif ans == "h":
+            high = number_line.index(num)
+            number_line = number_line[:high]
+        elif ans == "l":
+            low = number_line.index(num)
+            number_line = number_line[low:]
+        else:
+            print("Invalid input, please enter only c, h or l according to the instructions.")
+            continue
+        guesses += 1
+
+computer_guess()
