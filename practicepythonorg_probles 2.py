@@ -180,3 +180,12 @@ if __name__ == "__main__":
                 print("Invalid input.")
         if checkwin(xState, yState) != -1:
             break
+
+# 26. Max Of Three
+def largest(a, b, c) -> int:
+    if a > b and a > c:
+        return a
+    elif b > a and b > c:
+        return b
+    else:
+        return c
