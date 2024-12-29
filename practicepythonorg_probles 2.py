@@ -118,6 +118,9 @@ def computer_guess() -> None:
 # computer_guess()
 
 # 25. Tic Tac Toe
+def sum(a, b, c):
+    return a + b + c
+
 def print_board() -> None:
     zero = "X" if xState[0] else ("O" if yState[0] else 0)
     one = "X" if xState[1] else ("O" if yState[1] else 1)
@@ -134,7 +137,46 @@ def print_board() -> None:
     print(f"--|---|--")
     print(f"{six} | {seven} | {eight}")
 
+def checkwin(xState, yState) -> int:
+    wins: int = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6]]
+    for win in wins:
+        if sum(xState[win[0]], xState[win[1]], xState[win[2]]) == 3:
+            print("X wins!")
+            return 1
+        elif sum(yState[win[0]], yState[win[1]], yState[win[2]]) == 3:
+            print("O wins!")
+            return 0
+    return -1
+
 if __name__ == "__main__":
-    xState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    yState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    xState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0] # 0 means empty, 1 means X, O
+    yState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    player_turn: int = 1
     print_board()
+    while True:
+        if player_turn == 1:
+            print("X player's turn, enter a position from 1 to 9")
+            try:
+                x: int = int(input("Here: "))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+            if type(x) == int:
+                xState[x] = 1
+                player_turn = 2
+                print_board()
+            else:
+                print("Invalid input.")
+        elif player_turn == 2:
+            print("O player's turn, enter a position from 1 to 9")
+            try:
+                y: int = int(input("Here: "))
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+            if type(y) == int:
+                yState[y] = 1
+                player_turn = 1
+                print_board()
+            else:
+                print("Invalid input.")
+        if checkwin(xState, yState) != -1:
+            break

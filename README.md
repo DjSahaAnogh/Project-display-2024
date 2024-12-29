@@ -100,4 +100,4 @@ Here’s a list of **20 basic Python problems**, progressively arranged from ver
 
 This set of problems progresses in difficulty and is perfect for building foundational Python skills!
 
-```Note: The solutions for https://www.practicepython.org/ are not done in correct order, because I skiped 14, 26, 27, 29```
+```Note: The solutions for``` https://www.practicepython.org/ ```are not done in correct order, because I skiped 14, 26, 27, 29```
