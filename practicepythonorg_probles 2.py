@@ -4,6 +4,7 @@
 # URL OF THE WEBSITE https://www.practicepython.org/
 
 # ALL IMPORTS
+import random
 import requests
 from bs4 import BeautifulSoup
 
@@ -148,9 +149,10 @@ def checkwin(xState, yState) -> int:
             return 0
     return -1
 
-if __name__ == "__main__":
-    xState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0] # 0 means empty, 1 means X, O
-    yState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+xState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0] # 0 means empty, 1 means X, O
+yState: list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+def game():
     player_turn: int = 1
     print_board()
     while True:
@@ -181,6 +183,8 @@ if __name__ == "__main__":
         if checkwin(xState, yState) != -1:
             break
 
+# game()
+
 # 26. Max Of Three
 def largest(a, b, c) -> int:
     if a > b and a > c:
@@ -189,3 +193,14 @@ def largest(a, b, c) -> int:
         return b
     else:
         return c
+    
+# print(largest(1, 2, 3))
+    
+# 27. Pick a word
+with open("sowpods.txt", "r") as file:
+    words: list = []
+    for line in file:
+        words.append(line.strip())
+    word = random.choice(words)
+    print(word)
+
