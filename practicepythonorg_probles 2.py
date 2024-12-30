@@ -197,10 +197,41 @@ def largest(a, b, c) -> int:
 # print(largest(1, 2, 3))
     
 # 27. Pick a word
-with open("sowpods.txt", "r") as file:
+with open("common_words_uppercase.txt", "r") as file:
     words: list = []
     for line in file:
         words.append(line.strip())
     word = random.choice(words)
-    print(word)
+    pass
+    # print(word)
 
+# 28. Guess Letters
+word: str = random.choice(words)
+guess: str = "-" * len(word)
+guess_letter: list = []
+letter_list: list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+word_list: list = list(word)
+guess_list: list = list(guess)
+mistake: int = 0
+while mistake != 10:
+    print(guess)
+    print(f"You have {10 - mistake} mistakes left.")
+    print(f"Letters you have guessed: {guess_letter}")
+    print(f"Letters you haven't guessed: {letter_list}")
+    guess_letter.append(input("Enter a letter: ").upper())
+    letter_list.remove(guess_letter[-1])
+    for i in range(len(word)):
+        if word[i] in guess_letter:
+            guess_list[i] = word[i]
+            guess = "".join(guess_list)
+    if guess_letter[-1] not in word:
+        mistake += 1
+    if "-" not in guess:
+        print("You win!")
+        print(f"The word was {word}")
+        break
+
+if mistake == 10:
+    print("You lose!")
+    print(f"The word was {word}")
