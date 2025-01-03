@@ -186,7 +186,7 @@ def game():
 # game()
 
 # 26. Max Of Three
-def largest(a, b, c) -> int:
+def largest(a: int, b: int, c: int) -> int:
     if a > b and a > c:
         return a
     elif b > a and b > c:
@@ -206,32 +206,55 @@ with open("common_words_uppercase.txt", "r") as file:
     # print(word)
 
 # 28. Guess Letters
-word: str = random.choice(words)
-guess: str = "-" * len(word)
-guess_letter: list = []
-letter_list: list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+def guess_word() -> None:
+    word: str = random.choice(words)
+    guess: str = "-" * len(word)
+    guess_letter: list = []
+    letter_list: list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-word_list: list = list(word)
-guess_list: list = list(guess)
-mistake: int = 0
-while mistake != 10:
-    print(guess)
-    print(f"You have {10 - mistake} mistakes left.")
-    print(f"Letters you have guessed: {guess_letter}")
-    print(f"Letters you haven't guessed: {letter_list}")
-    guess_letter.append(input("Enter a letter: ").upper())
-    letter_list.remove(guess_letter[-1])
-    for i in range(len(word)):
-        if word[i] in guess_letter:
-            guess_list[i] = word[i]
-            guess = "".join(guess_list)
-    if guess_letter[-1] not in word:
-        mistake += 1
-    if "-" not in guess:
-        print("You win!")
+    word_list: list = list(word)
+    guess_list: list = list(guess)
+    mistake: int = 0
+    while mistake != 10:
+        print(guess)
+        print(f"You have {10 - mistake} mistakes left.")
+        print(f"Letters you have guessed: {guess_letter}")
+        print(f"Letters you haven't guessed: {letter_list}")
+        guess_letter.append(input("Enter a letter: ").upper())
+        letter_list.remove(guess_letter[-1])
+        for i in range(len(word)):
+            if word[i] in guess_letter:
+                guess_list[i] = word[i]
+                guess = "".join(guess_list)
+        if guess_letter[-1] not in word:
+            mistake += 1
+        if "-" not in guess:
+            print("You win!")
+            print(f"The word was {word}")
+            break
+
+    if mistake == 10:
+        print("You lose!")
         print(f"The word was {word}")
-        break
 
-if mistake == 10:
-    print("You lose!")
-    print(f"The word was {word}")
+# guess_word()
+
+# 28. Birthday Dictionaries
+def birthday_dictionary() -> None:
+    birthdays = {
+        "Arijit": "28/03/2009",
+        "Naimur": "28/03/2009",
+        "Maruf": "10/04/2009",
+        "Samiul": "19/04/2009", 
+        "Anish": "30/06/2009",
+        "Joyanto": "22/07/2009"
+    }
+    print("Welcome to the birthday dictionary. We know the birthdays of:")
+    for name in birthdays:
+        print(name)
+
+    name = input("Who's birthday do you want to look up?: ")
+    if name in birthdays:
+        print(f"{name}'s birthday is {birthdays[name]}")
+    else:
+        print("Sorry, we don't have birthday information for that person.")
