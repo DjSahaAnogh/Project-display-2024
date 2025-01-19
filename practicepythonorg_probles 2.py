@@ -7,6 +7,10 @@
 import random
 import requests
 from bs4 import BeautifulSoup
+import json
+from collections import Counter
+from bokeh.plotting import figure, show
+from bokeh.models import ColumnDataSource
 
 # 18. Decode A Web Page Two
 
@@ -241,7 +245,7 @@ def guess_word() -> None:
 
 # 28. Birthday Dictionaries
 def birthday_dictionary() -> None:
-    birthdays = {
+    birthdays: dict = {
         "Arijit": "28/03/2009",
         "Naimur": "28/03/2009",
         "Maruf": "10/04/2009",
@@ -259,4 +263,61 @@ def birthday_dictionary() -> None:
     else:
         print("Sorry, we don't have birthday information for that person.")
 
-# 29. 
+# 29. Json file
+def add_birthdays() -> None:
+    birthdays: dict = {
+            "Arijit": "28/03/2009",
+            "Naimur": "28/03/2009",
+            "Maruf": "10/04/2009",
+            "Samiul": "19/04/2009", 
+            "Anish": "30/06/2009",
+            "Joyanto": "22/07/2009",
+        }
+    print("Welcome to the birthday dictionary. Please enter the name and date of birth of the person you want to add.")
+    name: str = input("Enter the name: ")
+    date: str = input("Enter the date: ")
+    birthdays[name] = date
+
+    with open("birthday_list.json", "w") as file:
+        json.dump(birthdays, file)
+
+# add_birthdays()
+
+# 30. Birthday Months
+birthday_Months: dict = {
+    'Arijit': 'March',
+    'Naimur': 'March',
+    'Maruf': 'April',
+    'Samiul': 'April',
+    'Anish': 'June',
+    'Joyanto': 'July'
+}
+count_months = Counter(birthday_Months.values())
+
+
+# birthday_months()
+
+# 31. Monthly Birthday Polt
+def birthday_polt() -> None:
+    x = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    y = [count_months[i] if i in birthday_Months.values() and i in count_months else 0 for i in x]
+
+    # Categorical x-axis
+    source = ColumnDataSource(data=dict(months=x, counts=y))
+
+    # Creating the figure
+    p = figure(x_range=x, title="Birthday Months Distribution", 
+            x_axis_label="Months", y_axis_label="Counts", 
+            height=400, width=800)
+
+    # Vertical bar chart
+    p.vbar(x="months", top="counts", width=0.4, source=source, color="skyblue", legend_label="Birthdays")
+
+    # Improve visuals
+    p.legend.orientation = "horizontal"
+    p.legend.location = "top_center"
+
+    # Display the plot
+    show(p)
+
+birthday_polt()
