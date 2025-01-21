@@ -11,6 +11,7 @@ import json
 from collections import Counter
 from bokeh.plotting import figure, show
 from bokeh.models import ColumnDataSource
+import datetime
 
 # 18. Decode A Web Page Two
 
@@ -320,4 +321,35 @@ def birthday_polt() -> None:
     # Display the plot
     show(p)
 
-birthday_polt()
+# birthday_polt()
+
+# 32. Refactor code
+# example code
+# print(" --- --- ---")
+# print("|   |   |   |")
+# print(" --- --- ---")
+# print("|   |   |   |")
+# print(" --- --- ---")
+# print("|   |   |   |")
+# print(" --- --- ---")
+
+# 32. Refactored code
+def draw_board() -> None:
+    size: int= int(input("Enter the size of the board: "))
+    x = size
+    while x:
+        print(" --- " * size)
+        print("|    " * (size + 1))
+        x -= 1
+    print(" --- " * size)
+
+# draw_board()
+
+#  33. Character Input Datetime
+def greet() -> None:
+    name: str= input("Enter your name: ")
+    age: int = int(input("Enter your age: "))
+    message = f"Hello {name}!, you will turn 100 in {datetime.datetime.now().year + (100 - age)}"
+    print(message)
+
+# greet()
